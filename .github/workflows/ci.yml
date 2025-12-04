@@ -42,7 +42,7 @@ jobs:
     - name: 🚀 Run tests with pytest
       # This assumes the model.joblib file is available for the test to run predict()
       run: |
-        pytest tests/test_app.py
+        PYTHONPATH=. pytest tests/test_app.py
 
     # ----------------------------------------------------
     # 🐳 Docker Build and Push Phase
