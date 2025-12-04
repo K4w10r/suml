@@ -1,21 +1,16 @@
-# tests/test_app.py
 import pytest
 import os
 import sys
 
-# Add the application directory to the path so we can import predict
-# This is necessary because the test is run from the root, but the module is one level up
-# in the 'app' directory, or in this case, next to the 'tests' directory.
-# Assuming predict.py is in the root directory for simplicity in CI,
-# but if it was in 'app/predict.py', the import would need adjustment.
-# Based on your previous files, predict.py seems to be in the root directory.
+# --- ADD THESE THREE LINES TO FIX THE IMPORT ---
+# Get the absolute path of the directory containing predict.py (the project root)
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# ---------------------------------------------
 
-# If 'predict.py' is in the root:
+# Now the import will work:
 from predict import predict
 
-# If 'predict.py' is in a folder named 'app' (as suggested by the file contents):
-# sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-# from app.predict import predict
+# ... rest of your test file ...
 
 # Standard Iris example features (versicolor)
 VERSICOLOR_FEATURES = [6.0, 2.9, 4.5, 1.5]
